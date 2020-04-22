@@ -124,7 +124,6 @@ function getName(nameObj) {
   return "Hello, my name is " + `${name}` + "."
 }
 
-
 /**
  * ### Challenge `appleIndex`
  * 
@@ -140,8 +139,8 @@ function getName(nameObj) {
  * passing in [ 'orange', 'grape', 'apple', 'banana', 'mango' ] as the argument,
  * the returned value should be: 2.
 */
-function appleIndex(/* code here */) {
-  /* code here */
+function appleIndex(array) {
+  return array.indexOf('apple')
 }
 
 /**
@@ -159,31 +158,45 @@ function appleIndex(/* code here */) {
  * passing in [ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ] as the argument,
  * the returned value should be: [ false, true, false, false, true, false ].
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(fruitsArray) {
+  let bool = []
+  for (let fruit of fruitsArray) {
+    if (fruit === 'apple') {
+      bool.push(true)
+    }
+    else {
+      bool.push(false)
+    }
+  }
+  return bool
 }
-
-
+// for (let i = 0; i < fruitsArray.length; i++) {
+//   console.log(fruitsArray)
+//   if (fruitsArray[i] === 'apple' || fruitsArray[i] === 'apples')
+//     return true;
+//   else
+//     return false;
+// }
 
 /*
 // ⭐️ Example Test Data ⭐️
 
 var inventory = [
-  { id: 1, car_make: "Lincoln", car_model: "Navigator", car_year: 2009 },
-  { id: 2, car_make: "Mazda", car_model: "Miata MX-5", car_year: 2001 },
-  { id: 3, car_make: "Land Rover", car_model: "Defender Ice Edition", car_year: 2010 },
-  { id: 4, car_make: "Honda", car_model: "Accord", car_year: 1983 },
-  { id: 5, car_make: "Mitsubishi", car_model: "Galant", car_year: 1990 },
-  { id: 6, car_make: "Honda", car_model: "Accord", car_year: 1995 },
-  { id: 7, car_make: "Smart", car_model: "Fortwo", car_year: 2009 },
-  { id: 8, car_make: "Audi", car_model: "4000CS Quattro", car_year: 1987 },
-  { id: 9, car_make: "Ford", car_model: "Windstar", car_year: 1996 },
-  { id: 10, car_make: "Mercedes-Benz", car_model: "E-Class", car_year: 2000 },
-  { id: 11, car_make: "Infiniti", car_model: "G35", car_year: 2004 },
-  { id: 12, car_make: "Lotus", car_model: "Esprit", car_year: 2004 },
-  { id: 13, car_make: "Chevrolet", car_model: "Cavalier", car_year: 1997 },
-  { id: 14, car_make: "Dodge", car_model: "Ram Van 1500", car_year: 1999 }
-  /// ... Truncated
+{ id: 1, car_make: "Lincoln", car_model: "Navigator", car_year: 2009 },
+{ id: 2, car_make: "Mazda", car_model: "Miata MX-5", car_year: 2001 },
+{ id: 3, car_make: "Land Rover", car_model: "Defender Ice Edition", car_year: 2010 },
+{ id: 4, car_make: "Honda", car_model: "Accord", car_year: 1983 },
+{ id: 5, car_make: "Mitsubishi", car_model: "Galant", car_year: 1990 },
+{ id: 6, car_make: "Honda", car_model: "Accord", car_year: 1995 },
+{ id: 7, car_make: "Smart", car_model: "Fortwo", car_year: 2009 },
+{ id: 8, car_make: "Audi", car_model: "4000CS Quattro", car_year: 1987 },
+{ id: 9, car_make: "Ford", car_model: "Windstar", car_year: 1996 },
+{ id: 10, car_make: "Mercedes-Benz", car_model: "E-Class", car_year: 2000 },
+{ id: 11, car_make: "Infiniti", car_model: "G35", car_year: 2004 },
+{ id: 12, car_make: "Lotus", car_model: "Esprit", car_year: 2004 },
+{ id: 13, car_make: "Chevrolet", car_model: "Cavalier", car_year: 1997 },
+{ id: 14, car_make: "Dodge", car_model: "Ram Van 1500", car_year: 1999 }
+/// ... Truncated
 ]
 */
 /**
@@ -218,6 +231,8 @@ function get3rdCar(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
+  const aCar = inventory[index]
+  return `The is a ${aCar.car_make}; ${aCar.car_model} `
   /* code here */
 }
 
@@ -232,8 +247,9 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo(inventory) {
+  const lastCar = inventory.slice(-1)[0]
+  return `The is a; ${lastCar.car_make} ${lastCar.car_model} `
 }
 
 /**
@@ -245,8 +261,12 @@ function getLastCarInfo(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(yearsArray) {
+  const allYears = []
+  for (let i = 0; i < yearsArray.length; i++) {
+    allYears.push(yearsArray[i].car_year)
+  }
+  return allYears
 }
 
 /**
@@ -258,11 +278,12 @@ function getModelYears(/* code here */) {
  * getCarInfoById takes two arguments:
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  *     (2) a number which is the desired car id (see how each car has its own unique id).
- * getCarInfoById returns a string in the format `This is a {car_make} {car_model}
+ * getCarInfoById returns a string in the format `This is a { car_make } { car_model }
  * 
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
+
 function getCarInfoById(/* code here */) {
   /* code here */
 }
